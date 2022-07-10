@@ -5,6 +5,19 @@ name = "pypi"
 
 [packages]
 django = "==4.0.5"
+boto3 = "*"
+django-cors-headers = "*"
+django-dotenv = "*"
+django-filter = "*"
+djangorestframework = "*"
+django-storages = "*"
+djangorestframework-simplejwt = "*"
+gunicorn = "*"
+geocoder = "*"
+whitenoise = "*"
+psycopg2 = "*"
+dj-database-url = "*"
+flake8 = "*"
 
 [dev-packages]
 
