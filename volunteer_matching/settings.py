@@ -12,9 +12,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+dotenv.read_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -23,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&jy#w91a-inoo$-^1e^1+8!=1!@y%$r*)c4hfj*lgz!tx3zsye'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -77,11 +80,11 @@ WSGI_APPLICATION = 'volunteer_matching.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'volunteer_matchig',
-        'USER': 'postgres',
-        "PASSWORD": 'root',
-        "HOST": 'localhost',
-        "PORT": 5432
+        'NAME': os.environ.get('DATABAS_NAME'),
+        'USER': os.environ.get('DATABAS_USER'),
+        "PASSWORD": os.environ.get('DATABAS_PASSWORD'),
+        "HOST": os.environ.get('DATABAS_HOST'),
+        "PORT": os.environ.get('DATABAS_PORT')
     }
 }
 
