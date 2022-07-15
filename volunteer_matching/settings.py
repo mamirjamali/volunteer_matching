@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import dotenv
+import platform
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,8 +27,8 @@ dotenv.read_dotenv()
 SECRET_KEY = 'django-insecure-&jy#w91a-inoo$-^1e^1+8!=1!@y%$r*)c4hfj*lgz!tx3zsye'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'True'
-
+DEBUG = True
+# os.environ.get('DEBUG') == 'True'
 ALLOWED_HOSTS = []
 
 
@@ -138,5 +139,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 VIRTUAL_ENV_BASE = os.environ.get('VIRTUAL_ENV')
 
-GEOS_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/geos_c.dll'
-GDAL_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/gdal304.dll'
+# GEOS_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/geos_c.dll'
+# GDAL_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/gdal304.dll'
+
+WINDOWS = platform.system() == "Windows"
+
+if WINDOWS:
+    # the below needs to change for linux
+    GDAL_LIBRARY_PATH = r'C:\OSGeo4W\bin\gdal305.dll'
+    GEOS_LIBRARY_PATH = r'C:\OSGeo4W\bin\geos_c.dll'
+    OSGEO4W = r"C:\OSGeo4W"
+    os.environ['OSGEO4W_ROOT'] = OSGEO4W
+    # OSGEO4W + r"\share\gdal"
+    os.environ['GDAL_DATA'] = "C:\Program Files\GDAL\gdal-data"
+    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+    os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
