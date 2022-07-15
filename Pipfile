@@ -18,7 +18,7 @@ whitenoise = "*"
 psycopg2 = "*"
 dj-database-url = "*"
 flake8 = "*"
-gdal = {path = "./GDAL-3.3.3-cp39-cp39-win_amd64.whl"}
+gdal = {path = "./GDAL-3.4.3-cp39-cp39-win_amd64.whl"}
 
 [dev-packages]
 

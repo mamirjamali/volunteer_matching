@@ -10,20 +10,9 @@ from django.contrib.gis.geos import Point
 
 
 class VolunteerCategory(models.TextChoices):
-    water_and_land = ('Water & Land volunteering'(
-        'Litter picking',
-        'Tree planting & care',
-        'Biodiversity protection',
-        'Monitoring water quality'
-    )
-    )
-    animal_protection = ('Animal Protection Volunteering'(
-        'Animal rescue shelters',
-        'Farm sanctuaries',
-        'Hunt saboteurs',
-        'Wildlife'
-    )
-    )
+    water_and_land = "Litter picking"
+
+    animal_protection = "Animal rescue shelters"
 
 
 class PreferdTime(models.TextChoices):
@@ -32,16 +21,16 @@ class PreferdTime(models.TextChoices):
 
 
 class Volunteers(models.Model):
-    email = models.ForeignKey(User.email, on_delete=CASCADE)
-    address = models.CharField(max_length=100, null=False)
+    email = models.EmailField()
+    address = models.CharField(max_length=100, null=True)
     volunteering_category = models.CharField(
         max_length=100,
-        choices=VolunteerCategory.choices
+        choices=VolunteerCategory.choices,
         default=VolunteerCategory.water_and_land
     )
     preferd_time = models.CharField(
         max_length=100,
-        choices=PreferdTime.choices
+        choices=PreferdTime.choices,
         default=PreferdTime.weekends
     )
     point = gismoedls.PointField(default=Point(0.0, 0.0))

@@ -40,7 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis'
+
+    'rest_framework',
+    'corsheaders',
+    'storages',
+    'django.contrib.gis',
+    'django_filters',
+    'volunteers.apps.VolunteersConfig'
 ]
 
 MIDDLEWARE = [
@@ -133,4 +139,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 VIRTUAL_ENV_BASE = os.environ.get('VIRTUAL_ENV')
 
 GEOS_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/geos_c.dll'
-GDAL_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/gdal303.dll'
+GDAL_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/gdal304.dll'
