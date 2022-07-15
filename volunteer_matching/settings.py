@@ -139,9 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 VIRTUAL_ENV_BASE = os.environ.get('VIRTUAL_ENV')
 
-# GEOS_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/geos_c.dll'
-# GDAL_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/gdal304.dll'
-
+# If using windows install the OSGeo4W: https://trac.osgeo.org/osgeo4w/
 WINDOWS = platform.system() == "Windows"
 
 if WINDOWS:
@@ -154,3 +152,6 @@ if WINDOWS:
     os.environ['GDAL_DATA'] = "C:\Program Files\GDAL\gdal-data"
     os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
     os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
+else:
+    GEOS_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/geos_c.dll'
+    GDAL_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/gdal304.dll'
